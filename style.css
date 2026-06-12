@@ -3,12 +3,14 @@
 
 body {
   font-family: "Times New Roman", Times, serif;
-  font-size: 20px;
   line-height: 1.4;
   color: #000000;
   background: #ffffff;
-  margin: 0;
-  padding: 70px 40px 120px 30%;
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 70px 0 120px 0;
+  box-sizing: border-box;
 }
 
 /* page title (the blue one at the top) */
@@ -43,15 +45,38 @@ a:visited {
 
 p {
   margin: 0 0 30px 0;
-  max-width: 30em;
 }
 
-/* placeholder box for project images / slideshow */
+/* image grid: always two columns, exactly filling the 500px column */
+.images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 0 30px 0;
+}
+
+.images img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* a full-width image (fills the whole 500px). works on its own or
+   inside a .images grid (where it spans both columns). */
+img.full,
+.images img.full {
+  width: 100%;
+  height: auto;
+  display: block;
+  grid-column: 1 / -1;
+  margin: 0 0 30px 0;
+}
+
+/* placeholder box for project images / slideshow (full 500px wide) */
 .placeholder {
   background: #d9d9d9;
-  width: 30em;
-  max-width: 100%;
-  height: 18em;
+  width: 100%;
+  height: 280px;
   margin: 0 0 50px 0;
   display: flex;
   align-items: center;
@@ -71,9 +96,10 @@ p {
   margin-bottom: 60px;
 }
 
-/* on narrow screens, drop the big left indent so it stays readable */
-@media (max-width: 800px) {
+/* on screens narrower than the 500px column, add a small gutter */
+@media (max-width: 520px) {
   body {
-    padding: 40px 24px 80px 24px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
